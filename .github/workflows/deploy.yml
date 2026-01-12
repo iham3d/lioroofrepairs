@@ -13,7 +13,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Deploy to Plesk via SSH
+      - name: Deploy files to Plesk via SSH
         uses: easingthemes/ssh-deploy@main
         with:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
@@ -22,20 +22,25 @@ jobs:
           SOURCE: "."
           TARGET: ${{ secrets.PLESK_WEB_ROOT }}
           EXCLUDE: "/node_modules/, /.git/, /.github/, /.next/"
-          SCRIPT_BEFORE: |
+
+      - name: Build and Restart on Server
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.PLESK_HOST }}
+          username: ${{ secrets.PLESK_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script_stop: true
+          script: |
             cd ${{ secrets.PLESK_WEB_ROOT }}
-            echo "Preparing deployment..."
-          SCRIPT_AFTER: |
-            cd ${{ secrets.PLESK_WEB_ROOT }}
-            echo "Installing dependencies..."
+            echo "📦 Installing dependencies..."
             npm ci
-            echo "Generating Prisma client..."
+            echo "🔧 Generating Prisma client..."
             npx prisma generate
-            echo "Running database migrations..."
+            echo "📊 Running database migrations..."
             npx prisma migrate deploy
-            echo "Building Next.js application..."
+            echo "🏗️ Building Next.js application..."
             npm run build
-            echo "Restarting application..."
+            echo "🔄 Restarting application..."
             pm2 restart lioroofrepairs || pm2 start npm --name "lioroofrepairs" -- start
             echo "✅ Deployment completed successfully!"
 
@@ -46,3 +51,4 @@ jobs:
       - name: Deployment failed notification
         if: failure()
         run: echo "❌ Deployment failed. Check logs for details."
+
