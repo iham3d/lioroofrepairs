@@ -1,9 +1,10 @@
 .card {
     background: var(--color-white);
-    border-radius: var(--radius-lg);
-    padding: var(--space-lg);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    transition: all var(--transition-base);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 4px 16px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(0, 0, 0, 0.04);
 }
 
 .card.hover {
@@ -11,18 +12,21 @@
 }
 
 .card.hover:hover {
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+    transform: translateY(-8px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08), 0 16px 48px rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0.02);
 }
 
 /* Variants */
 .glass {
-    background: var(--gradient-glass);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .gradient {
-    background: var(--gradient-primary);
-    color: var(--color-white);
+    background: linear-gradient(135deg, hsl(215, 100%, 55%) 0%, hsl(215, 100%, 35%) 100%);
+    color: white;
+    border: none;
 }
