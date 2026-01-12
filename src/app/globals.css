@@ -16,12 +16,18 @@
   --color-primary: hsl(210, 90%, 48%);
   /* Trust blue */
   --color-primary-dark: hsl(210, 90%, 38%);
+  --color-primary-darker: hsl(210, 90%, 28%);
   --color-primary-light: hsl(210, 90%, 58%);
+  --color-primary-lighter: hsl(210, 90%, 68%);
+  --color-primary-50: hsl(210, 90%, 95%);
 
   --color-accent: hsl(25, 95%, 53%);
   /* Warm orange accent */
   --color-accent-dark: hsl(25, 95%, 43%);
+  --color-accent-darker: hsl(25, 95%, 33%);
   --color-accent-light: hsl(25, 95%, 63%);
+  --color-accent-lighter: hsl(25, 95%, 73%);
+  --color-accent-50: hsl(25, 95%, 95%);
 
   --color-neutral-900: hsl(220, 15%, 15%);
   /* Dark text */
@@ -33,11 +39,26 @@
   --color-neutral-300: hsl(220, 5%, 85%);
   --color-neutral-200: hsl(220, 5%, 92%);
   --color-neutral-100: hsl(220, 5%, 97%);
+  --color-neutral-50: hsl(220, 5%, 99%);
   --color-white: hsl(0, 0%, 100%);
 
   --color-success: hsl(142, 71%, 45%);
   --color-warning: hsl(38, 92%, 50%);
   --color-error: hsl(0, 84%, 60%);
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  --gradient-accent: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+  --gradient-hero: linear-gradient(135deg,
+      hsl(210, 90%, 48%) 0%,
+      hsl(210, 90%, 38%) 50%,
+      hsl(220, 85%, 30%) 100%);
+  --gradient-overlay: linear-gradient(180deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.7) 100%);
+  --gradient-glass: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.05) 100%);
 
   /* Typography */
   --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -439,5 +460,141 @@ a:hover {
 @media (max-width: 480px) {
   :root {
     --container-padding: var(--space-md);
+  }
+}
+
+/* ========================================
+   MODERN ANIMATIONS & KEYFRAMES
+   ======================================== */
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(var(--color-primary), 0.4);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(var(--color-primary), 0.8);
+  }
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+
+/* Glassmorphism */
+.glass {
+  background: var(--gradient-glass);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Gradient Backgrounds */
+.bg-gradient-primary {
+  background: var(--gradient-primary);
+}
+
+.bg-gradient-accent {
+  background: var(--gradient-accent);
+}
+
+.bg-gradient-hero {
+  background: var(--gradient-hero);
+}
+
+/* Animations */
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.6s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.6s ease-out;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.4s ease-out;
+}
+
+/* Hover Effects */
+.hover-lift {
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 20px rgba(var(--color-primary), 0.5);
+}
+
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: prefer-reduced-motion) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
