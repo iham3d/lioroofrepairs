@@ -219,6 +219,168 @@ export default function HomePage() {
         </div>
       </section>
 
+
+      {/* Gallery Preview Section */}
+      <section style={{ background: 'var(--color-neutral-50)', padding: 'var(--space-4xl) 0' }}>
+        <div className="container">
+          <motion.div
+            className="text-center"
+            style={{ marginBottom: 'var(--space-3xl)' }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2>Our Recent Projects</h2>
+            <p style={{ maxWidth: '700px', margin: '0 auto', color: 'var(--color-neutral-600)' }}>
+              Take a look at some of our completed roofing projects across the UK
+            </p>
+          </motion.div>
+
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+              gap: 'var(--space-lg)',
+            }}
+          >
+            {[
+              { title: 'Residential Roof Repair', location: 'Manchester', image: '🏠' },
+              { title: 'Commercial Installation', location: 'London', image: '🏢' },
+              { title: 'Emergency Repair', location: 'Birmingham', image: '⚡' },
+              { title: 'Gutter Replacement', location: 'Leeds', image: '💧' },
+            ].map((project, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -8 }}
+                style={{
+                  background: 'var(--color-white)',
+                  borderRadius: 'var(--radius-lg)',
+                  overflow: 'hidden',
+                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)',
+                  cursor: 'pointer',
+                  transition: 'all var(--transition-base)',
+                }}
+              >
+                <div
+                  style={{
+                    height: '200px',
+                    background: 'var(--gradient-primary)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '4rem',
+                  }}
+                >
+                  {project.image}
+                </div>
+                <div style={{ padding: 'var(--space-lg)' }}>
+                  <h3 style={{ fontSize: 'var(--font-size-lg)', marginBottom: 'var(--space-xs)' }}>
+                    {project.title}
+                  </h3>
+                  <p style={{ color: 'var(--color-neutral-600)', fontSize: 'var(--font-size-sm)', marginBottom: 0 }}>
+                    📍 {project.location}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            style={{ textAlign: 'center', marginTop: 'var(--space-3xl)' }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+          >
+            <Button href="/gallery" variant="primary" size="lg">
+              View Full Gallery
+            </Button>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Reviews Section */}
+      <section className="section">
+        <div className="container">
+          <motion.div
+            className="text-center"
+            style={{ marginBottom: 'var(--space-3xl)' }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2>What Our Customers Say</h2>
+            <p style={{ maxWidth: '700px', margin: '0 auto', color: 'var(--color-neutral-600)' }}>
+              Don't just take our word for it - hear from our satisfied customers
+            </p>
+          </motion.div>
+
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gap: 'var(--space-xl)',
+            }}
+          >
+            {[
+              {
+                name: 'Sarah Johnson',
+                location: 'Manchester',
+                rating: 5,
+                text: 'Excellent service from start to finish. The team was professional, efficient, and the quality of work was outstanding.',
+              },
+              {
+                name: 'Michael Brown',
+                location: 'London',
+                rating: 5,
+                text: 'Very impressed with the emergency repair service. They responded quickly and fixed our roof leak the same day!',
+              },
+              {
+                name: 'Emma Wilson',
+                location: 'Birmingham',
+                rating: 5,
+                text: 'Great value for money and fantastic workmanship. Would definitely recommend to anyone needing roofing work.',
+              },
+            ].map((review, index) => (
+              <Card key={index}>
+                <div style={{ marginBottom: 'var(--space-md)' }}>
+                  <div style={{ display: 'flex', gap: '4px', marginBottom: 'var(--space-sm)' }}>
+                    {[...Array(review.rating)].map((_, i) => (
+                      <span key={i} style={{ color: 'var(--color-accent)', fontSize: '1.25rem' }}>
+                        ⭐
+                      </span>
+                    ))}
+                  </div>
+                  <p style={{ fontSize: 'var(--font-size-base)', lineHeight: 1.6, marginBottom: 'var(--space-md)', fontStyle: 'italic' }}>
+                    "{review.text}"
+                  </p>
+                </div>
+                <div style={{ borderTop: '1px solid var(--color-neutral-200)', paddingTop: 'var(--space-md)' }}>
+                  <p style={{ fontWeight: 600, marginBottom: '4px' }}>{review.name}</p>
+                  <p style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-neutral-600)', marginBottom: 0 }}>
+                    📍 {review.location}
+                  </p>
+                </div>
+              </Card>
+            ))}
+          </div>
+
+          <motion.div
+            style={{ textAlign: 'center', marginTop: 'var(--space-3xl)' }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+          >
+            <Button href="/reviews" variant="primary" size="lg">
+              Read More Reviews
+            </Button>
+          </motion.div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="section">
         <div className="container">

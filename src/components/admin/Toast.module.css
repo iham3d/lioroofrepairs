@@ -1,0 +1,138 @@
+.toastContainer {
+    position: fixed;
+    top: var(--space-xl);
+    right: var(--space-xl);
+    z-index: var(--z-tooltip);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    max-width: 400px;
+    pointer-events: none;
+}
+
+.toast {
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    box-shadow: var(--shadow-xl);
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    pointer-events: all;
+    animation: slideInRight 0.3s ease-out;
+    border-left: 4px solid;
+    min-width: 300px;
+}
+
+.toast.success {
+    border-left-color: var(--color-success);
+}
+
+.toast.error {
+    border-left-color: var(--color-error);
+}
+
+.toast.info {
+    border-left-color: var(--color-primary);
+}
+
+.toast.warning {
+    border-left-color: var(--color-warning);
+}
+
+.toastIcon {
+    font-size: var(--font-size-xl);
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.toast.success .toastIcon {
+    color: var(--color-success);
+}
+
+.toast.error .toastIcon {
+    color: var(--color-error);
+}
+
+.toast.info .toastIcon {
+    color: var(--color-primary);
+}
+
+.toast.warning .toastIcon {
+    color: var(--color-warning);
+}
+
+.toastContent {
+    flex: 1;
+}
+
+.toastTitle {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-neutral-900);
+    margin: 0 0 var(--space-xs) 0;
+    font-size: var(--font-size-base);
+}
+
+.toastMessage {
+    color: var(--color-neutral-600);
+    margin: 0;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
+}
+
+.toastClose {
+    background: none;
+    border: none;
+    color: var(--color-neutral-500);
+    cursor: pointer;
+    padding: 0;
+    font-size: var(--font-size-xl);
+    line-height: 1;
+    transition: color var(--transition-fast);
+    flex-shrink: 0;
+}
+
+.toastClose:hover {
+    color: var(--color-neutral-900);
+}
+
+.toastExit {
+    animation: slideOutRight 0.3s ease-out forwards;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .toastContainer {
+        top: var(--space-md);
+        right: var(--space-md);
+        left: var(--space-md);
+        max-width: none;
+    }
+
+    .toast {
+        min-width: auto;
+    }
+}
