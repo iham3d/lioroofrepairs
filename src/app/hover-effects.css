@@ -1,0 +1,8 @@
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+}

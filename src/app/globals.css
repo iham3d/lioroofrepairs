@@ -1,0 +1,443 @@
+/* ========================================
+   GLOBAL STYLES & DESIGN SYSTEM
+   Lio Roof Repairs
+   ======================================== */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import './hover-effects.css';
+
+/* ========================================
+   CSS CUSTOM PROPERTIES (Design Tokens)
+   ======================================== */
+
+:root {
+  /* Colors - Professional Neutral Base + Accent */
+  --color-primary: hsl(210, 90%, 48%);
+  /* Trust blue */
+  --color-primary-dark: hsl(210, 90%, 38%);
+  --color-primary-light: hsl(210, 90%, 58%);
+
+  --color-accent: hsl(25, 95%, 53%);
+  /* Warm orange accent */
+  --color-accent-dark: hsl(25, 95%, 43%);
+  --color-accent-light: hsl(25, 95%, 63%);
+
+  --color-neutral-900: hsl(220, 15%, 15%);
+  /* Dark text */
+  --color-neutral-800: hsl(220, 12%, 25%);
+  --color-neutral-700: hsl(220, 10%, 35%);
+  --color-neutral-600: hsl(220, 8%, 50%);
+  --color-neutral-500: hsl(220, 6%, 65%);
+  --color-neutral-400: hsl(220, 5%, 75%);
+  --color-neutral-300: hsl(220, 5%, 85%);
+  --color-neutral-200: hsl(220, 5%, 92%);
+  --color-neutral-100: hsl(220, 5%, 97%);
+  --color-white: hsl(0, 0%, 100%);
+
+  --color-success: hsl(142, 71%, 45%);
+  --color-warning: hsl(38, 92%, 50%);
+  --color-error: hsl(0, 84%, 60%);
+
+  /* Typography */
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --font-size-xs: 0.75rem;
+  /* 12px */
+  --font-size-sm: 0.875rem;
+  /* 14px */
+  --font-size-base: 1rem;
+  /* 16px */
+  --font-size-lg: 1.125rem;
+  /* 18px */
+  --font-size-xl: 1.25rem;
+  /* 20px */
+  --font-size-2xl: 1.5rem;
+  /* 24px */
+  --font-size-3xl: 1.875rem;
+  /* 30px */
+  --font-size-4xl: 2.25rem;
+  /* 36px */
+  --font-size-5xl: 3rem;
+  /* 48px */
+  --font-size-6xl: 3.75rem;
+  /* 60px */
+
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  /* 4px */
+  --space-sm: 0.5rem;
+  /* 8px */
+  --space-md: 1rem;
+  /* 16px */
+  --space-lg: 1.5rem;
+  /* 24px */
+  --space-xl: 2rem;
+  /* 32px */
+  --space-2xl: 3rem;
+  /* 48px */
+  --space-3xl: 4rem;
+  /* 64px */
+  --space-4xl: 6rem;
+  /* 96px */
+  --space-5xl: 8rem;
+  /* 128px */
+
+  /* Layout */
+  --container-max-width: 1280px;
+  --container-padding: var(--space-lg);
+
+  /* Border Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 350ms ease;
+
+  /* Z-index */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+}
+
+/* ========================================
+   RESET & BASE STYLES
+   ======================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+  color: var(--color-neutral-900);
+  background-color: var(--color-white);
+  overflow-x: hidden;
+}
+
+/* ========================================
+   TYPOGRAPHY
+   ======================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-neutral-900);
+  margin-bottom: var(--space-md);
+}
+
+h1 {
+  font-size: var(--font-size-5xl);
+  font-weight: var(--font-weight-extrabold);
+}
+
+h2 {
+  font-size: var(--font-size-4xl);
+}
+
+h3 {
+  font-size: var(--font-size-3xl);
+}
+
+h4 {
+  font-size: var(--font-size-2xl);
+}
+
+h5 {
+  font-size: var(--font-size-xl);
+}
+
+h6 {
+  font-size: var(--font-size-lg);
+}
+
+p {
+  margin-bottom: var(--space-md);
+  color: var(--color-neutral-700);
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-primary-dark);
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+
+.container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.section {
+  padding: var(--space-4xl) 0;
+}
+
+.section-sm {
+  padding: var(--space-3xl) 0;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-primary {
+  color: var(--color-primary);
+}
+
+.text-accent {
+  color: var(--color-accent);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ========================================
+   BUTTONS
+   ======================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-xl);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-accent {
+  background-color: var(--color-accent);
+  color: var(--color-white);
+}
+
+.btn-accent:hover {
+  background-color: var(--color-accent-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.btn-lg {
+  padding: var(--space-lg) var(--space-2xl);
+  font-size: var(--font-size-lg);
+}
+
+/* ========================================
+   FORMS
+   ======================================== */
+
+.form-group {
+  margin-bottom: var(--space-lg);
+}
+
+.form-label {
+  display: block;
+  margin-bottom: var(--space-sm);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-neutral-800);
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  padding: var(--space-md);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-base);
+  color: var(--color-neutral-900);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-neutral-300);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.form-error {
+  margin-top: var(--space-sm);
+  font-size: var(--font-size-sm);
+  color: var(--color-error);
+}
+
+/* ========================================
+   ANIMATIONS
+   ======================================== */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn var(--transition-base);
+}
+
+.fade-in-up {
+  animation: fadeInUp var(--transition-slow);
+}
+
+/* ========================================
+   RESPONSIVE BREAKPOINTS
+   ======================================== */
+
+@media (max-width: 768px) {
+  :root {
+    --font-size-5xl: 2.25rem;
+    /* 36px */
+    --font-size-4xl: 1.875rem;
+    /* 30px */
+    --font-size-3xl: 1.5rem;
+    /* 24px */
+  }
+
+  .section {
+    padding: var(--space-3xl) 0;
+  }
+
+  h1 {
+    font-size: var(--font-size-4xl);
+  }
+
+  h2 {
+    font-size: var(--font-size-3xl);
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --container-padding: var(--space-md);
+  }
+}
